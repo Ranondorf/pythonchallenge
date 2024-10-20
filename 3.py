@@ -5,7 +5,33 @@ class Solution:
     def __init__(self):
         pass
     def run(self, message):
-        print(message)
+        final = ""
+        start_count = 0
+        middle = False
+        end_count = 0
+        for char in message:
+            if char.isupper:
+                if start_count < 3:
+                    final += char
+                    start_count += 1
+                elif start_count == 3:
+                    final = final[1::]
+                elif end_count < 3:
+                    final += char
+                    end_count +=1
+                elif end_count == 3:
+                    break
+            elif char.islower:
+                if start_count == 3 and not middle:
+                    final += char
+                    middle = True
+                elif middle and end_count == 0:
+                    middle = False
+                    start_count = 0
+                    final = ""
+        print(final)
+
+
 
 
 
