@@ -10,26 +10,32 @@ class Solution:
         middle = False
         end_count = 0
         for char in message:
-            if char.isupper:
-                if start_count < 3:
+            if char.isupper():
+                if start_count < 3 and not middle:
                     final += char
                     start_count += 1
-                elif start_count == 3:
+                elif start_count == 3 and not middle:
+                    final += char
                     final = final[1::]
                 elif end_count < 3:
                     final += char
                     end_count +=1
-                elif end_count == 3:
-                    break
-            elif char.islower:
+                    if end_count ==3:
+                        print(final)
+                        final = ""
+                        start_count = 0
+                        end_count = 0
+                        middle = False   
+            elif char.islower():
                 if start_count == 3 and not middle:
                     final += char
                     middle = True
-                elif middle and end_count == 0:
-                    middle = False
-                    start_count = 0
+                elif start_count < 3 or end_count <3 or middle:
                     final = ""
-        print(final)
+                    start_count = 0
+                    end_count = 0
+                    middle = False
+     
 
 
 
@@ -1287,4 +1293,3 @@ wgDEIuvHFxRfQhtqLKnJfONtkcnDORkZqbtPplsjjTEIsquhSsQTwNZuPVxaTqDvwMONBfCsNJuJpJHZ
 dCdFLtBQPtFQuCdKOrpndJNUFQIDSbetUKylhSUjcDVtbiQrWMRQhAwGUZyPneCGUjGBBTkLqxLAXXtB
 KfErkDaWMFZZeuqDmXKJEGHyToPUhPphfVhgUZgbIuRAtWnroImpJKqqmEZqeNQCKzhjIkKQHURWLXFw
 PBuijeoTSpsVLaOGuLVjMZXkBvVXwUuHfBihziiavGSYofPNeKsTXruMUumRRPQJzvSzJkKbtSipiqBd""")
-    
